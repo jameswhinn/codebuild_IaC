@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - "cd /usr/bin"
+      - "curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+      - "unzip terraform_${TF_VERSION}_linux_amd64.zip"
+
+  build:
+    commands:
+      - cd "$CODEBUILD_SRC_DIR"
+      # - bundle install --path vendor/bundle
+      - terraform init
+      - terraform plan
+
+  post_build:
+    commands:
+      - echo "Terraform completed on `date`"
