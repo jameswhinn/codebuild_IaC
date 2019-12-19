@@ -1,5 +1,9 @@
 version: 0.2
 
+# environment_variables:
+#  plaintext:
+#   TF_VERSION: "0.11.14"
+
 phases:
   install:
     runtime-versions:
